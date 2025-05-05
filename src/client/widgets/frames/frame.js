@@ -14,6 +14,11 @@ class Frame extends StaticProperties(Widget, {bypass: true}) {
     static defaults() {
 
         return super.defaults().extend({
+            class_specific: {
+                allow: {type: 'string', value: '', help: [
+                    'Content for the iframe element\'s <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLIFrameElement/allow">allow</a> attribute',
+                ]},
+            },
             value: {
                 value: {type: 'string', value: '', help: [
                     'External web page URL.',
@@ -40,6 +45,9 @@ class Frame extends StaticProperties(Widget, {bypass: true}) {
         if (!this.getProp('border')) this.container.classList.add('noborder')
 
         this.frame = DOM.get(this.widget, '.frame')[0]
+
+        if (this.getProp('allow')) this.frame.setAttribute('allow', this.getProp('allow'))
+
         this.errorText = html`<span>${locales('iframe_unauthorized')}<span>`
         this.errorTextMounted = false
 

@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.29.3
+
+- widgets
+    - add `allow` property
 
 ## 1.29.1 / 1.29.2
 
