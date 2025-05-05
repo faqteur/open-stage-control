@@ -3,7 +3,7 @@
 ## 1.29.3
 
 - widgets
-    - add `allow` property
+    - frame: add `allow` property
 
 ## 1.29.1 / 1.29.2
 
