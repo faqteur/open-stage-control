@@ -1,7 +1,9 @@
 var Panel = require('./panel'),
     parser = require('../../parser'),
     {deepCopy} = require('../../utils'),
-    Session = require('../../managers/session/session')
+    Session = require('../../managers/session/session'),
+    widgetManager = require('../../managers/widgets')
+
 
 class Matrix extends Panel {
 
@@ -125,6 +127,51 @@ class Matrix extends Panel {
 
         switch (propName) {
 
+            case 'quantity':
+
+                if (oldPropValue > this.getProp('quantity')) {
+
+                    for (var i = oldPropValue - 1; i >= this.getProp('quantity'); i--) {
+                        if (this.widget.contains(this.children[i].container)) {
+                            this.widget.removeChild(this.children[i].container)
+                        }
+                        widgetManager.removeWidgets(this.children[i].getAllChildren().concat(this.children[i]))
+                    }
+
+                } else {
+
+                    this.cachedProps.props = this.resolveProp('props', undefined, true)
+
+                    for (var i = oldPropValue; i < this.getProp('quantity'); i++) {
+
+                        var props = deepCopy(this.getProp('props')[i])
+                        var data = this.defaultProps(i)
+
+                        if (typeof props === 'object' && props !== null) {
+                            Object.assign(data, props)
+                        }
+
+                        data = JSON.parse(JSON.stringify(data).replace(/(JS|#|OSC|@|VAR)_\{/g, '$1{'))
+
+                        Session.converters['1.13.2'].widget(data)
+
+                        var widget = parser.parse({
+                            data: data,
+                            parentNode: this.widget,
+                            parent: this
+                        })
+
+                        widget._index = i
+                        widget.container.classList.add('not-editable')
+                        widget._not_editable = true
+
+                    }
+
+                }
+
+
+                return
+
             case 'props':
 
                 for (let i = this.children.length - 1; i >= 0; i--) {
@@ -224,6 +271,7 @@ Matrix.parsersContexts.props = {
 }
 
 Matrix.dynamicProps = Matrix.prototype.constructor.dynamicProps.concat(
+    'quantity',
     'props'
 )
 
