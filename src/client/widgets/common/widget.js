@@ -939,7 +939,12 @@ class Widget extends EventEmitter {
 
                 if (!this.isDynamicProp(propName)) {
 
-                    if (widget && this.contains(widget)) {
+                    if (this.constructor._defaults[propName] === undefined) {
+
+                        // ignore invalid properties
+                        continue
+
+                    } else if (widget && this.contains(widget)) {
 
                         this.errorProp(propName, '@{}', `a container can't use its child's properties to define non-dynamic properties.`)
                         continue

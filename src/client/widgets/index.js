@@ -69,5 +69,6 @@ module.exports.categories = {
 var defaults = {}
 for (var k in module.exports.widgets) {
     defaults[k] = module.exports.widgets[k].defaults()
+    module.exports.widgets[k]._defaults = defaults
 }
 module.exports.defaults = defaults
