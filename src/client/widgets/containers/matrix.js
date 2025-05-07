@@ -131,7 +131,7 @@ class Matrix extends Panel {
 
                 if (oldPropValue > this.getProp('quantity')) {
 
-                    for (var i = oldPropValue - 1; i >= this.getProp('quantity'); i--) {
+                    for (let i = oldPropValue - 1; i >= this.getProp('quantity'); i--) {
                         if (this.widget.contains(this.children[i].container)) {
                             this.widget.removeChild(this.children[i].container)
                         }
@@ -142,7 +142,7 @@ class Matrix extends Panel {
 
                     this.cachedProps.props = this.resolveProp('props', undefined, true)
 
-                    for (var i = oldPropValue; i < this.getProp('quantity'); i++) {
+                    for (let i = oldPropValue; i < this.getProp('quantity'); i++) {
 
                         var props = deepCopy(this.getProp('props')[i])
                         var data = this.defaultProps(i)
