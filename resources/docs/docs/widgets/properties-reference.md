@@ -365,7 +365,7 @@
             | <h6 id="matrix_variables">variables<sup><i class="fas fa-bolt" title="dynamic"></i></sup><a class="headerlink" href="#matrix_variables" title="Permanent link">#</a></h6> | `*` | <code>"@\{parent.variables}"</code> | Defines one or more arbitrary variables that can be inherited by children widgets |
             | <h6 id="matrix_traversing">traversing<sup><i class="fas fa-bolt" title="dynamic"></i></sup><a class="headerlink" href="#matrix_traversing" title="Permanent link">#</a></h6> | `boolean` | <code>false</code> | Set to `true` to enable traversing gestures in this widget. Set to `smart` to limit affected widgets by the type of the first touched widget<br/><br/>Choices: `false`, `true`, `smart` |
             | <h6 id="matrix_widgetType">widgetType<a class="headerlink" href="#matrix_widgetType" title="Permanent link">#</a></h6> | `string` | <code>"button"</code> | Defines the type of the widgets in the matrix |
-            | <h6 id="matrix_quantity">quantity<a class="headerlink" href="#matrix_quantity" title="Permanent link">#</a></h6> | `number` | <code>4</code> | Defines the number of widgets in the matrix |
+            | <h6 id="matrix_quantity">quantity<sup><i class="fas fa-bolt" title="dynamic"></i></sup><a class="headerlink" href="#matrix_quantity" title="Permanent link">#</a></h6> | `number` | <code>4</code> | Defines the number of widgets in the matrix |
             | <h6 id="matrix_props">props<sup><i class="fas fa-bolt" title="dynamic"></i></sup><a class="headerlink" href="#matrix_props" title="Permanent link">#</a></h6> | `object` | <code>\{<br/>&nbsp;"label": "#{$}"<br/>}</code> | Defines a set of property to override the widgets' defaults.<br/><br/>JS{} and #{} blocks in this field are resolved with an extra variable representing each widget's index: `$` (e.g. `#{$}`)<br/><br/>Advanced syntax blocks (@{}, OSC{}, JS{}, VAR{} and #{}) are resolved at the matrix' scope (ie @{this.variables} returns the matrix' variables property)<br/><br/>Advanced syntax blocks can be passed to children without being resolved at the matrix' scope by adding an underscore before the opening bracket.<br/><br/>Note: unless overridden, children inherit from the matrix' `id` and osc properties (`id` and `address` are appended with `/$`) |
 
     === "value"
@@ -544,6 +544,12 @@
 
 ??? api "<div id="frame">frame<a class="headerlink" href="#frame" title="Permanent link">#</a></div>"
     Embed a web page in a frame. Note: some websites do not allow this.
+
+    === "frame"
+
+        | property | type |default | description |
+        | --- | --- | --- | --- |
+            | <h6 id="frame_allow">allow<a class="headerlink" href="#frame_allow" title="Permanent link">#</a></h6> | `string` | <code>""</code> | Content for the iframe element's <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLIFrameElement/allow">allow</a> attribute |
 
     === "value"
 
