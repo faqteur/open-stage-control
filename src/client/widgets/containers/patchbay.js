@@ -167,11 +167,12 @@ class PatchBay extends Container(Canvas) {
             let w = parser.parse({
                 data: {
                     type: 'patchbaynode',
+                    comments: this.inputs[k], // TODO: using comment prop to smuggle input identifier, ok but could be more elegant
                     id: this.getProp('id') + '/' + this.inputs[k],
                     address: '#{@{parent.address} == "auto" ? "/" + @{parent.id} : @{parent.address}}',
                     target: '@{parent.target}',
                     ignoreDefaults: '@{parent.ignoreDefaults}',
-                    preArgs: this.inputs[k],
+                    preArgs: '#{@{parent.preArgs} == "" ? @{this.comments} : Array.isArray(@{parent.preArgs}) ? @{parent.preArgs}.concat(@{this.comments}) : [@{parent.preArgs}, @{this.comments}]}',
                     bypass: '@{parent.bypass}',
                     label: k
                 },

@@ -5,6 +5,7 @@
 - widgets
     - frame: add `allow` property
     - matrix: make `quantity` a dynamic property to avoid losing widget state when it changes
+    - patchbay: missing `preArgs` implementation
 
 ## 1.29.1 / 1.29.2
 
