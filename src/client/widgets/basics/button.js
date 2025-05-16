@@ -99,7 +99,7 @@ class Button extends Widget {
                         this.parsersLocalScope.touchCoords = [e.offsetX / this.buttonSize[0], 1 - e.offsetY / this.buttonSize[1]]
                     }
 
-                    this.setValue(this.getProp('on'), {sync: true, send: true, local:true})
+                    this.setValue(this.getProp('on'), {sync: true, send: true, local:true, y: e.offsetY})
 
                     if (tap) this.container.classList.add('active')
 
@@ -117,7 +117,7 @@ class Button extends Widget {
                         this.parsersLocalScope.touchCoords = [e.offsetX / this.buttonSize[0], 1 - e.offsetY / this.buttonSize[1]]
                     }
 
-                    this.setValue(this.getProp('on'), {sync: true, send: true, local:true})
+                    this.setValue(this.getProp('on'), {sync: true, send: true, local:true, y: e.offsetY})
 
                     if (tap) this.container.classList.add('active')
 

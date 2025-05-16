@@ -1,9 +1,15 @@
 # Changelog
 
+## 1.29.5
+
+- bug fixes
+    - keyboard: regression (1.27.5) breaking `velocity` property
+
+
 ## 1.29.4
 
 - bug fixes
-    - regression (1.29.3) breaking some widget recreation routines 
+    - regression (1.29.3) breaking some widget recreation routines
 
 ## 1.29.3
 
