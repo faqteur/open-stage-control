@@ -4,6 +4,7 @@
 
 - bug fixes
     - keyboard: regression (1.27.5) breaking `velocity` property
+    - editor: retain scroll position in code editors
 
 
 ## 1.29.4

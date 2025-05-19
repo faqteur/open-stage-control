@@ -153,8 +153,12 @@ class CodeEditor {
                 this.editor.dirty = true
             })
 
-            var pos = this.editor.getCursorPosition()
-            if (pos.row === undefined || pos.column === undefined) this.editor.gotoLine(0)
+            setTimeout(()=>{
+                var pos = this.editor.getCursorPosition()
+                if (pos.row === undefined || pos.column === undefined) {
+                    this.editor.gotoLine(0)
+                }
+            })
 
             this.typing = false
             setCommandEnabled(this.editor, 'indent', false)
