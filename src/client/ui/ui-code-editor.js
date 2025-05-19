@@ -207,7 +207,11 @@ class CodeEditor {
                 globals = this.widget.getProp('type') === 'canvas' ?
                     {value: true, height: true, width: true, event: true} :
                     {value: true, event: true, handle: true}
+            } else if (this.name === 'onResize') {
+                globals = {value: true, height: true, width: true, cssVars: true}
             }
+
+
             globals.locals = true
             globals.console = true
             globals.JS = true
