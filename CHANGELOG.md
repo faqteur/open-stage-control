@@ -5,6 +5,7 @@
 - bug fixes
     - keyboard: regression (1.27.5) breaking `velocity` property
     - editor: retain scroll position in code editors
+    - cli: regression (1.28) preventing from setting options from a terminal on windows
 
 
 ## 1.29.4

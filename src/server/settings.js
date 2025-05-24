@@ -13,7 +13,7 @@ var path = require('path'),
 
 // rmeove all args before the first actual cli arg
 while (argv.length) {
-    if (argv[0][0] != '-' || argv[0][0] == '--') {
+    if (argv[0][0] != '-' || argv[0] == '--') {
         argv.splice(0, 1)
     } else if (argv[0][0] == '-' ) {
         break
