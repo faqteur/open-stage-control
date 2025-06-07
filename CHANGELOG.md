@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.29.6
+
+- bug fixes
+    - matrix: prevent error when `quantity` is invalid
+
 ## 1.29.5
 
 - bug fixes

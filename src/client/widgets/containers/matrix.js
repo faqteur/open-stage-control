@@ -66,7 +66,9 @@ class Matrix extends Panel {
 
         if (parser.widgets[this.getProp('widgetType')]) {
 
-            for (let i = 0; i < this.getProp('quantity'); i++) {
+            var quantity = Math.max(parseInt(this.getProp('quantity')) || 0, 0)
+
+            for (let i = 0; i < quantity; i++) {
 
                 var props = deepCopy(this.getProp('props')[i])
                 var data = this.defaultProps(i)
@@ -129,9 +131,12 @@ class Matrix extends Panel {
 
             case 'quantity':
 
-                if (oldPropValue > this.getProp('quantity')) {
+                var quantity = Math.max(parseInt(this.getProp('quantity')) || 0, 0)
+                oldPropValue = Math.max(parseInt(oldPropValue) || 0, 0)
 
-                    for (let i = oldPropValue - 1; i >= this.getProp('quantity'); i--) {
+                if (oldPropValue > quantity) {
+
+                    for (let i = oldPropValue - 1; i >= quantity; i--) {
                         if (this.widget.contains(this.children[i].container)) {
                             this.widget.removeChild(this.children[i].container)
                         }
@@ -142,7 +147,7 @@ class Matrix extends Panel {
 
                     this.cachedProps.props = this.resolveProp('props', undefined, true)
 
-                    for (let i = oldPropValue; i < this.getProp('quantity'); i++) {
+                    for (let i = oldPropValue; i < quantity; i++) {
 
                         var props = deepCopy(this.getProp('props')[i])
                         var data = this.defaultProps(i)
@@ -227,7 +232,7 @@ class Matrix extends Panel {
             propValue = propValue !== undefined ? propValue : this.props[propName]
 
             var data = [],
-                quantity = this.resolveProp('quantity', undefined, false, false, false)
+                quantity = Math.max(parseInt(this.resolveProp('quantity', undefined, false, false, false)) || 0, 0)
 
             if (typeof propValue === 'object' && propValue !== null && !Array.isArray(propValue)) {
                 for (let i = 0; i < quantity; i++) {
