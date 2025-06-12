@@ -281,7 +281,11 @@ module.exports = class Xy extends Pad {
                 this.batchDraw()
                 return
             case 'spring':
-                if (this.getProp('spring') && !this.touched) this.setValue([this.faders.x.getSpringValue(),this.faders.y.getSpringValue()], {...options})
+                if (this.getProp('spring') && !this.touched) {
+                    var x = this.faders.x.getSpringValue(),
+                        y = this.faders.y.getSpringValue()
+                    if (x !== this.value[0] || y !== this.value[1]) this.setValue([x, y], {...options})
+                }
                 return
 
         }

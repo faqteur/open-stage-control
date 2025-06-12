@@ -402,7 +402,7 @@ class MultiXy extends Pad {
             case 'spring':
             case 'pointSize':
             case 'axisLock':
-                this.updatePadsAttr()
+                this.updatePadsAttr(options)
                 return
         }
 
