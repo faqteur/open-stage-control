@@ -6,6 +6,9 @@
     - matrix: prevent error when `quantity` is invalid
     - multixy/xy: send value when setting `spring` to `true` (only if current value is different than spring value)
 
+- widgets
+    - multixy/xy: add `stepsX` and `stepsY` properties
+
 ## 1.29.5
 
 - bug fixes

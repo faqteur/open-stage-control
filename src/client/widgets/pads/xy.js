@@ -29,10 +29,12 @@ module.exports = class Xy extends Pad {
                     'If set to `true`, touching anywhere on the widget\'s surface will make them snap to the touching coordinates',
                 ]},
                 spring: {type: 'boolean', value: false, help: 'When set to `true`, the widget will go back to its default value when released'},
-                rangeX: {type: 'object', value: {min:0,max:1}, help: 'Defines the min and max values for the x axis'},
-                rangeY: {type: 'object', value: {min:0,max:1}, help: 'Defines the min and max values for the y axis'},
+                rangeX: {type: 'object', value: {min:0,max:1}, help: 'Defines the min and max values for the x axis (see fader)'},
+                rangeY: {type: 'object', value: {min:0,max:1}, help: 'Defines the min and max values for the y axis (see fader)'},
                 logScaleX: {type: 'boolean|number', value: false, help: 'Set to `true` to use logarithmic scale for the x axis. Set to `-1` for exponential scale.'},
                 logScaleY: {type: 'boolean|number', value: false, help: 'Set to `true` to use logarithmic scale for the y axis. Set to `-1` for exponential scale.'},
+                stepsX: {type: 'number|array|string', value: false, help: 'Defines `steps` for the x axis (see fader)'},
+                stepsY: {type: 'number|array|string', value: false, help: 'Defines `steps` for the x axis (see fader)'},
                 axisLock: {type: 'string', value: '', choices: ['', 'x', 'y', 'auto'], help: [
                     'Restrict movements to one of the axes only unless `Shift` is held.',
                     'When left empty, holding `Shift` while dragging will lock the pad according the first movement. `auto` will do the opposite.'
@@ -70,6 +72,7 @@ module.exports = class Xy extends Pad {
                 decimals:this.getProp('decimals'),
                 logScale:this.getProp('logScaleX'),
                 sensitivity: this.getProp('sensitivity'),
+                steps: this.getProp('stepsX'),
             }, parent: this}),
             y: new Fader({props:{
                 ...faderDefaults,
@@ -82,6 +85,7 @@ module.exports = class Xy extends Pad {
                 decimals:this.getProp('decimals'),
                 logScale:this.getProp('logScaleY'),
                 sensitivity: this.getProp('sensitivity'),
+                steps: this.getProp('stepsY'),
             }, parent: this}),
         }
 
@@ -223,8 +227,8 @@ module.exports = class Xy extends Pad {
         if (!this.visible) return
 
         var pointSize = this.pointSize,
-            x = this.faders.x.percentToCoord(this.faders.x.percent),
-            y = this.faders.y.percentToCoord(this.faders.y.percent),
+            x = this.faders.x.percentToCoord(this.faders.x.valueToPercent(this.faders.x.value)),
+            y = this.faders.y.percentToCoord(this.faders.y.valueToPercent(this.faders.y.value)),
             ephemeral = this.getProp('ephemeral')
 
         this.clear()

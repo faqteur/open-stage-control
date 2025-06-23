@@ -47,10 +47,12 @@ class MultiXy extends Pad {
                     'If set to `true`, touching anywhere on the widget\'s surface will make them snap to the touching coordinates',
                 ]},
                 spring: {type: 'boolean', value: false, help: 'When set to `true`, the widget will go back to its default value when released'},
-                rangeX: {type: 'object', value: {min:0,max:1}, help: 'Defines the min and max values for the x axis'},
-                rangeY: {type: 'object', value: {min:0,max:1}, help: 'Defines the min and max values for the y axis'},
+                rangeX: {type: 'object', value: {min:0,max:1}, help: 'Defines the min and max values for the x axis (see fader)'},
+                rangeY: {type: 'object', value: {min:0,max:1}, help: 'Defines the min and max values for the y axis (see fader)'},
                 logScaleX: {type: 'boolean|number', value: false, help: 'Set to `true` to use logarithmic scale for the x axis. Set to `-1` for exponential scale.'},
                 logScaleY: {type: 'boolean|number', value: false, help: 'Set to `true` to use logarithmic scale for the y axis. Set to `-1` for exponential scale.'},
+                stepsX: {type: 'number|array|string', value: false, help: 'Defines `steps` for the x axis (see fader)'},
+                stepsY: {type: 'number|array|string', value: false, help: 'Defines `steps` for the x axis (see fader)'},
                 axisLock: {type: 'string', value: '', choices: ['', 'x', 'y', 'auto'], help: [
                     'Restrict movements to one of the axes only.',
                     'When left empty, holding `Shift` while dragging will lock the pad according the first movement. `auto` will do the opposite.'
@@ -93,6 +95,8 @@ class MultiXy extends Pad {
                 decimals:this.getProp('decimals'),
                 logScaleX:this.getProp('logScaleX'),
                 logScaleY:this.getProp('logScaleY'),
+                stepsX:this.getProp('stepsX'),
+                stepsY:this.getProp('stepsY'),
                 axisLock:this.getProp('axisLock'),
                 pointSize: 'auto',
                 pips: false,
