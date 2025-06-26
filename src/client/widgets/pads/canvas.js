@@ -20,7 +20,7 @@ class CanvasWidget extends Canvas {
                     'When calling `set()` from a script, submitted value should be an array only if `valueLength` is greater than 1.'
                 ]},
                 autoClear: {type: 'boolean', value: true, help: [
-                    'If set to `false`, the canvas context won\'t be cleared automatically and `ctx.clear()` will need to be called in `onDraw`.'
+                    'If set to `false`, the canvas context won\'t be cleared automatically and `ctx.clearRect()` will need to be called in `onDraw`.'
                 ]},
                 continuous: {type: 'boolean|number', value: false, help: [
                     'If set to `true`, `onDraw` will be called at each frame, otherwise it will be called only when the widget is touched and when it receives a value.',
