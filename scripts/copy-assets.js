@@ -14,6 +14,10 @@ var cpr = require('cpr'),
         ['../node_modules/ace-builds/src-min/worker-javascript.js', '../app/client/workers/worker-javascript.js'],
     ]
 
+if (process.platform === 'darwin') {
+    files.push(['../resources/images/logo_16x16.png', '../app/assets/logo_16x16.png'])
+}
+
 for (var i in files) {
     cpr(...files[i].map(f => path.resolve(__dirname + '/' + f)), {
         overwrite: true

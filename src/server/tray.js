@@ -17,7 +17,11 @@ module.exports = function (options = {}) {
         resetMenu(isServerRunning)
     })
 
-    tray = new Tray(__dirname + '/../assets/logo.png')
+    var icon = __dirname + '/../assets/logo.png'
+    if (process.platform === 'darwin') {
+        var icon = __dirname + '/../assets/logo_16x16.png'
+    }
+    tray = new Tray(icon)
     contextMenu = Menu.buildFromTemplate([
         {
             label: 'Open/Hide', click: () => {
@@ -33,7 +37,6 @@ module.exports = function (options = {}) {
         {
             label: 'Start/Stop',
             click: () => {
-                console.log(isServerRunning)
                 if (isServerRunning) {
                     ipcMain.emit('stop');
                 } else {
