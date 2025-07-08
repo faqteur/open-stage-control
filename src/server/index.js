@@ -217,11 +217,6 @@ function startLauncher() {
     app.on('ready',function(){
         launcher = require('./electron-window')({address:address, shortcuts:dev, width:680, height:(40 + 200 + 20 + 24 * Object.keys(settings.options).filter(x=>settings.options[x].launcher !== false).length / 2), node:true, color:'#151a24', id: 'launcher'})
         require('@electron/remote/main').enable(launcher.webContents)
-        launcher.on('close', ()=>{
-            process.stdout.write = stdoutWrite
-            process.stderr.write = stderrWrite
-            if (process.log) process.log = processLog
-        })
 
         tray = require('./tray')({
             window: launcher,
@@ -229,6 +224,25 @@ function startLauncher() {
             app: app,
             startServer: startServerProcess,
             stopServer: stopServerProcess
+        })
+
+        launcher.on('will-close', ()=>{
+            if (clientWindows.length) {
+                launcher.hide()
+                e.preventDefault()
+            }
+        })
+
+        launcher.on('close', (e)=>{
+            if (clientWindows.length) {
+                launcher.hide()
+                e.preventDefault()
+                return
+            }
+            process.stdout.write = stdoutWrite
+            process.stderr.write = stderrWrite
+            if (process.log) process.log = processLog
+            tray.destroy()
         })
 
     })

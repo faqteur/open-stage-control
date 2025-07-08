@@ -1,72 +1,89 @@
-var { Menu, Tray, ipcMain } = require('electron')
-
-var tray = null,
+var {Menu, Tray, ipcMain} = require('electron'),
+    settings = require('./settings'),
+    tray = null,
     contextMenu = null,
-    hideInTray = false,
     isServerRunning = false
 
-module.exports = function (options = {}) {
-
-    ipcMain.on('start', function (e, options) {
-        isServerRunning = true
-        resetMenu(isServerRunning)
-    })
-
-    ipcMain.on('stop', function (e, options) {
-        isServerRunning = false
-        resetMenu(isServerRunning)
-    })
+module.exports = function(options = {}) {
 
     var icon = __dirname + '/../assets/logo.png'
     if (process.platform === 'darwin') {
-        var icon = __dirname + '/../assets/logo_16x16.png'
+        icon = __dirname + '/../assets/logo_tray.png'
     }
+
     tray = new Tray(icon)
     contextMenu = Menu.buildFromTemplate([
         {
-            label: 'Open/Hide', click: () => {
-                if (hideInTray) {
-                    options.window.show()
-                    hideInTray = false
-                } else {
-                    options.window.hide()
-                    hideInTray = true
-                }
+            label: 'Show launcher',
+            id: 'show',
+            click: ()=>{
+                options.window.show()
             }
         },
         {
-            label: 'Start/Stop',
-            click: () => {
-                if (isServerRunning) {
-                    ipcMain.emit('stop');
-                } else {
-                    ipcMain.emit('start');
-                }
+            label: 'Hide launcher',
+            id: 'hide',
+            click: ()=>{
+                options.window.hide()
             }
         },
         {
-            label: 'New Window', click: () => {
+            label: 'Start server',
+            id: 'start',
+            click: ()=>{
+                ipcMain.emit('start')
+            }
+        },
+        {
+            label: 'Stop server',
+            id: 'stop',
+            click: ()=>{
+                ipcMain.emit('stop')
+            }
+        },
+        {
+            label: 'New client window',
+            id: 'new',
+            click: ()=> {
                 if (isServerRunning) {
                     options.openClient()
                 }
-            },
-            enabled: isServerRunning
+            }
         },
-        { type: 'separator' },
-        { label: 'Quit', click: () => { void options.app.quit(); } },
-    ]);
+        {
+            type: 'separator'
+        },
+        {
+            label: 'Quit',
+            role: 'Quit'
+        },
+    ])
+
     tray.setContextMenu(contextMenu)
-    tray.setToolTip('Open Stage Control')
+    tray.setToolTip(settings.infos.productName)
+
+    function updateMenu(){
+        contextMenu.getMenuItemById('start').visible = !isServerRunning
+        contextMenu.getMenuItemById('stop').visible = isServerRunning
+        contextMenu.getMenuItemById('show').visible = !options.window.isVisible()
+        contextMenu.getMenuItemById('hide').visible = options.window.isVisible()
+        contextMenu.getMenuItemById('new').visible = isServerRunning
+        tray.setContextMenu(contextMenu)
+    }
+
+    ipcMain.on('start', function(e, options) {
+        isServerRunning = true
+        updateMenu()
+    })
+
+    ipcMain.on('stop', function(e, options) {
+        isServerRunning = false
+        updateMenu()
+    })
+
+    options.window.on('show', updateMenu)
+    options.window.on('hide', updateMenu)
 
     return tray
 
-}
-
-function resetMenu(isServerRunning) {
-    contextMenu.items.forEach(item => {
-        if (item.label === 'New Window') {
-            item.enabled = isServerRunning
-        }
-    })
-    tray.setContextMenu(contextMenu)
 }

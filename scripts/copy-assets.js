@@ -4,6 +4,8 @@ var cpr = require('cpr'),
     files = [
         ['../resources/images/logo_nobadge.png', '../app/assets/favicon.png'],
         ['../resources/images/logo.png', '../app/assets/logo.png'],
+        ['../resources/images/logo_tray.png', '../app/assets/logo_tray.png'],
+        ['../resources/images/logo_tray@x2.png', '../app/assets/logo_tray@x2.png'],
         ['../LICENSE', '../app/LICENSE'],
         ['../src/python/', '../app/server/python/'],
         ['../resources/fonts/', '../app/assets/fonts/'],
