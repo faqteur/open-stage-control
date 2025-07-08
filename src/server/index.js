@@ -5,6 +5,7 @@ var dev = process.argv[0].includes('node_modules'),
     docsServer,
     app = null,
     launcher = null,
+    tray = null,
     clientWindows = [],
     serverProcess = null,
     node = false
@@ -221,6 +222,15 @@ function startLauncher() {
             process.stderr.write = stderrWrite
             if (process.log) process.log = processLog
         })
+
+        tray = require('./tray')({
+            window: launcher,
+            openClient: openClient,
+            app: app,
+            startServer: startServerProcess,
+            stopServer: stopServerProcess
+        })
+
     })
 
     let processLog = process.log,
