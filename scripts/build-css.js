@@ -1,4 +1,4 @@
-var sass = require('node-sass'),
+var sass = require('sass'),
     path = require('path'),
     fs = require('fs')
 
@@ -10,7 +10,8 @@ fs.readdirSync(indir + '/themes/').forEach(file => {
     if (file.includes('.scss') && file !== 'default.scss') {
         let result = sass.renderSync({
             file: indir + '/themes/' + file,
-            outputStyle: 'compressed'
+            outputStyle: 'compressed',
+            silenceDeprecations: ['mixed-decls', 'slash-div', 'import', 'legacy-js-api']
         })
 
         fs.writeFileSync(outdir + '/themes/' + file.split('/').pop().replace('scss', 'css'), result.css)
@@ -22,7 +23,8 @@ var result = sass.renderSync({
     file: indir + '/index.scss',
     outFile: outdir + '/open-stage-control.css',
     outputStyle: 'compressed',
-    sourceMap: true
+    sourceMap: true,
+    silenceDeprecations: ['mixed-decls', 'slash-div', 'import', 'legacy-js-api']
 })
 
 fs.writeFileSync(outdir + '/open-stage-control.css', result.css)
