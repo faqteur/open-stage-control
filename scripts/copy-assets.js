@@ -4,6 +4,8 @@ var cpr = require('cpr'),
     files = [
         ['../resources/images/logo_nobadge.png', '../app/assets/favicon.png'],
         ['../resources/images/logo.png', '../app/assets/logo.png'],
+        ['../resources/images/logo_tray.png', '../app/assets/logo_tray.png'],
+        ['../resources/images/logo_tray@x2.png', '../app/assets/logo_tray@x2.png'],
         ['../LICENSE', '../app/LICENSE'],
         ['../src/python/', '../app/server/python/'],
         ['../resources/fonts/', '../app/assets/fonts/'],
@@ -13,6 +15,10 @@ var cpr = require('cpr'),
         ['../node_modules/ace-builds/src-min/worker-html.js', '../app/client/workers/worker-html.js'],
         ['../node_modules/ace-builds/src-min/worker-javascript.js', '../app/client/workers/worker-javascript.js'],
     ]
+
+if (process.platform === 'darwin') {
+    files.push(['../resources/images/logo_16x16.png', '../app/assets/logo_16x16.png'])
+}
 
 for (var i in files) {
     cpr(...files[i].map(f => path.resolve(__dirname + '/' + f)), {
