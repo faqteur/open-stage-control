@@ -165,20 +165,20 @@
     }
 
     &.layout-vertical value:first-child {
-        border-top-left-radius: var(--border-radius);
-        border-top-right-radius: var(--border-radius)
+        border-top-left-radius: inherit;
+        border-top-right-radius: inherit;
     }
     &.layout-vertical value:last-child {
-        border-bottom-left-radius: var(--border-radius);
-        border-bottom-right-radius: var(--border-radius)
+        border-bottom-left-radius: inherit;
+        border-bottom-right-radius: inherit;
     }
     &.layout-horizontal value:first-child {
-        border-bottom-left-radius: var(--border-radius);
-        border-top-left-radius: var(--border-radius)
+        border-bottom-left-radius: inherit;
+        border-top-left-radius: inherit;
     }
     &.layout-horizontal value:last-child {
-        border-bottom-right-radius: var(--border-radius);
-        border-top-right-radius: var(--border-radius)
+        border-bottom-right-radius: inherit;
+        border-top-right-radius: inherit;
     }
 
     &.wrap value {
@@ -412,7 +412,7 @@
 
         width:var(--size-box-w);
         height:var(--size-box-h);
-
+        border-radius: inherit;
         display: flex;
 
         flex-direction: row;
@@ -460,14 +460,38 @@
         display: grid;
         grid-template-columns: repeat(var(--grid-columns), 1fr);
 
+        .item {
+            border-radius: inherit;
+        }
     }
 
     &.vertical menu {
 
         flex-direction: column;
 
+        .item:first-child {
+            border-top-left-radius: inherit;
+            border-top-right-radius: inherit;
+        }
+        .item:last-child {
+            border-bottom-left-radius: inherit;
+            border-bottom-right-radius: inherit;
+        }
+
     }
 
+    &.horizontal menu {
+
+        .item:first-child {
+            border-bottom-left-radius: inherit;
+            border-top-left-radius: inherit;
+        }
+        .item:last-child {
+            border-bottom-right-radius: inherit;
+            border-top-right-radius: inherit;
+        }
+
+    }
 }
 
 

@@ -263,6 +263,7 @@ class Menu extends MenuBase {
         this.container.classList.toggle('circular', layout === 'circular')
         this.container.classList.toggle('grid', layout === 'grid')
         this.container.classList.toggle('vertical', layout === 'vertical')
+        this.container.classList.toggle('horizontal', layout === 'horizontal')
 
         if (layout === 'grid') {
             var template = this.getProp('gridTemplate') || Math.round(this.values.length / 2)
