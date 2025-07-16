@@ -313,6 +313,7 @@ class Fader extends Slider {
 
             // border radius: clip gauge & knob
             if (rad > 0) {
+                rad = Math.min(Math.min(height, width) / 2, rad)
                 x = this.gaugePadding
                 y = this.gaugePadding
                 w = width - this.gaugePadding * 2
