@@ -13,9 +13,14 @@ var pythonOptions = {
 }
 
 var midiBinaries = {
-    linux: 'osc-midi-linux',
-    darwin: 'osc-midi-osx',
-    win32: 'osc-midi-windows.exe'
+    x64: {
+        linux: 'osc-midi-linux',
+        darwin: 'osc-midi-osx',
+        win32: 'osc-midi-windows.exe'
+    },
+    arm64:{
+        darwin: 'osc-midi-osx',
+    }
 }
 
 var expectMidiBinaries = false,
@@ -25,8 +30,8 @@ try {
 } catch(e) {}
 
 var pythonPathOverride
-if (process.arch === 'x64' && midiBinaries[process.platform]) {
-    var p = path.resolve(__dirname, midiBinaries[process.platform])
+if (midiBinaries[process.arch] && midiBinaries[process.arch][process.platform]) {
+    var p = path.resolve(__dirname,midiBinaries[process.arch][process.platform])
     if (fs.existsSync(p)) {
         pythonPathOverride = p
     } else if (expectMidiBinaries) {
