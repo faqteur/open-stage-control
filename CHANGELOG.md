@@ -5,6 +5,7 @@
 - bug fixes
     - matrix: prevent error when `quantity` is invalid
     - multixy/xy: send value when setting `spring` to `true` (only if current value is different than spring value)
+    - switch/menu/fader: more consistent rendering when `borderRadius` is set
 
 - widgets
     - multixy/xy: add `stepsX` and `stepsY` properties
