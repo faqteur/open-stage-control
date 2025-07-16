@@ -308,38 +308,36 @@ class Fader extends Slider {
             this.ctx.rect(this.gaugePadding, d, width - this.gaugePadding * 2, knobHeight)
             this.ctx.fill()
 
+            let x, y, w, h,
+                rad =  PXSCALE * this.cssVars.borderRadius
+
+            // border radius: clip gauge & knob
+            if (rad > 0) {
+                x = this.gaugePadding
+                y = this.gaugePadding
+                w = width - this.gaugePadding * 2
+                h = height - this.gaugePadding * 2
+                this.ctx.beginPath()
+                this.ctx.moveTo(x + rad, y)
+                this.ctx.arcTo(x + w, y, x + w, y + h, rad)
+                this.ctx.arcTo(x + w, y + h, x, y + h, rad)
+                this.ctx.arcTo(x, y + h, x, y, rad)
+                this.ctx.arcTo(x, y, x + w, y, rad)
+                this.ctx.closePath()
+
+                var tmpOp = this.ctx.globalCompositeOperation
+                this.ctx.globalCompositeOperation = 'destination-in'
+                this.ctx.fillStyle = '#ffffff'
+                this.ctx.globalAlpha = 1
+                this.ctx.fill()
+                this.ctx.globalCompositeOperation = tmpOp
+            }
 
             // stroke
             if (this.cssVars.lineWidth) {
 
                 this.ctx.globalAlpha = this.cssVars.alphaStroke
                 this.ctx.strokeStyle = this.cssVars.colorStroke
-
-                let x, y, w, h,
-                    rad =  PXSCALE * this.cssVars.borderRadius
-
-                if (rad > 0) {
-                    // bordeRadius: clip gauge & knob
-                    x = this.gaugePadding
-                    y = this.gaugePadding
-                    w = width - this.gaugePadding * 2
-                    h = height - this.gaugePadding * 2
-                    this.ctx.beginPath()
-                    this.ctx.moveTo(x + rad, y)
-                    this.ctx.arcTo(x + w, y, x + w, y + h, rad)
-                    this.ctx.arcTo(x + w, y + h, x, y + h, rad)
-                    this.ctx.arcTo(x, y + h, x, y, rad)
-                    this.ctx.arcTo(x, y, x + w, y, rad)
-                    this.ctx.closePath()
-
-                    var tmpOp = this.ctx.globalCompositeOperation
-                    this.ctx.globalCompositeOperation = 'destination-in'
-                    this.ctx.globalAlpha = 1
-                    this.ctx.fill()
-                    this.ctx.globalCompositeOperation = tmpOp
-                    this.ctx.globalAlpha = this.cssVars.alphaStroke
-                }
-
 
                 // draw stroke
                 x = 0.5 * this.cssVars.lineWidth
