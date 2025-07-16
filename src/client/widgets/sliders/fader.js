@@ -62,6 +62,7 @@ class Fader extends Slider {
         })
 
         defaults.scripting.onTouch = {type: 'script', value: '', editor:'javascript', help: ['Script executed when the widget is touched and released. See <a href="https://openstagecontrol.ammd.net/docs/widgets/scripting/">documentation</a>.',]}
+        defaults.style.borderRadius= {type: 'number', value: 'auto', help: 'Border radius expressed as a number (same for all corners, applies only for compact design).'}
 
         return defaults
 
