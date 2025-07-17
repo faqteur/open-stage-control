@@ -10,6 +10,9 @@
 - widgets
     - multixy/xy: add `stepsX` and `stepsY` properties
 
+- misc
+    - native silicon buids (osx-arm64)
+
 ## 1.29.5
 
 - bug fixes
