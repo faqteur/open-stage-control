@@ -3,7 +3,7 @@
 ## 1.29.7
 
 - launcher
-    - add tray icon and menu (landed in 1.29.6 accidentally)
+    - add tray icon and menu (landed in 1.29.6 accidentally), disabled by default (can be enabled from the launcher's menu)
 
 
 ## 1.29.6

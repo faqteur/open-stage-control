@@ -14,12 +14,13 @@
     - Check for update at startup: enable/disable this feature
 - Launcher
     - Autostart: start the server automatically when launcher is started
-    - Start hidden: starts the launcher hidden in tray
     - Always on top: pin the launcher window above other the windows
+    - Use tray: enable tray icon and menu
+    - Start minimized: starts the launcher minimized (or hidden in tray)
 
 The "play/stop" icon can be used to start and stop the server without opening the menu.
 
-## 2. Configuration form
+## 2. Configuration form
 
 Each server option is displayed here. When clicking on an option's label, a short help will be printed in the console. When an option is not correctly set, its label will turn to orange and an error message will be printed in the console.
 
@@ -29,7 +30,7 @@ The console displays various information, runtime errors and server debug messag
 
 ## Tray icon
 
-The launcher comes with a system tray icon that keeps the launcher alive when closed if there is at least one client window opened or if the server is running. Its context menu can be used to toggle the launcher's visibility and access some of the launcher's menu actions.
+If `Use tray` is set, the launcher comes with a system tray icon that keeps the launcher alive when closed if there is at least one client window opened or if the server is running. Its context menu can be used to toggle the launcher's visibility and access some of the launcher's menu actions.
 
 ## Keyboard shortcuts
 
