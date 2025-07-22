@@ -157,6 +157,16 @@ menu.append(new MenuItem({
         openDocs()
     }
 }))
+
+if (settings.remote.read('useTray')) {
+    menu.append(new MenuItem({
+        label: 'Hide',
+        click: ()=>{
+            ipcRenderer.send('hide')
+        }
+    }))
+}
+
 menu.append(new MenuItem({
     role: 'Quit'
 }))

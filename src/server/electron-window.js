@@ -65,8 +65,11 @@ module.exports = function(options={}) {
             if (settings.read('useTray') || process.platform === 'darwin') {
                 window.hide()
             } else {
+                window.show()
                 window.minimize()
             }
+        } else {
+            window.show()
         }
     })
 

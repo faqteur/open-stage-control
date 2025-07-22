@@ -303,6 +303,13 @@ function startLauncher() {
         showQRCode()
 
     })
+
+
+    ipcMain.on('hide',function(e, options){
+
+        launcher.hide()
+
+    })
 }
 
 
