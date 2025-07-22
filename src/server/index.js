@@ -225,23 +225,28 @@ function startLauncher() {
         launcher = require('./electron-window')({address:address, shortcuts:dev, width:680, height:(40 + 200 + 20 + 24 * Object.keys(settings.options).filter(x=>settings.options[x].launcher !== false).length / 2), node:true, color:'#151a24', id: 'launcher'})
         require('@electron/remote/main').enable(launcher.webContents)
 
-        tray = require('./tray')({
-            window: launcher,
-            openClient: openClient,
-            app: app,
-            startServer: startServerProcess,
-            stopServer: stopServerProcess
-        })
+        if (settings.read('useTray')) {
 
-        launcher.on('will-close', ()=>{
-            if (clientWindows.some(w=>w && !w.isDestroyed())) {
-                launcher.hide()
-                e.preventDefault()
-            }
-        })
+            tray = require('./tray')({
+                window: launcher,
+                openClient: openClient,
+                app: app,
+                startServer: startServerProcess,
+                stopServer: stopServerProcess
+            })
+
+            launcher.on('will-close', ()=>{
+                if (clientWindows.some(w=>w && !w.isDestroyed())) {
+                    launcher.hide()
+                    e.preventDefault()
+                }
+            })
+
+        }
+
 
         launcher.on('close', (e)=>{
-            if (clientWindows.some(w=>w && !w.isDestroyed()) && serverProcess) {
+            if (tray && clientWindows.some(w=>w && !w.isDestroyed()) && serverProcess) {
                 launcher.hide()
                 e.preventDefault()
                 return
@@ -249,7 +254,7 @@ function startLauncher() {
             process.stdout.write = stdoutWrite
             process.stderr.write = stderrWrite
             if (process.log) process.log = processLog
-            tray.destroy()
+            if (tray) tray.destroy()
         })
 
     })

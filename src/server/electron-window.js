@@ -62,7 +62,11 @@ module.exports = function(options={}) {
 
     window.once('ready-to-show', ()=>{
         if (options.id === 'launcher' && settings.read('startMinimized')) {
-            window.hide()
+            if (settings.read('useTray') || process.platform === 'darwin') {
+                window.hide()
+            } else {
+                window.minimize()
+            }
         }
     })
 

@@ -116,14 +116,6 @@ menu.append(new MenuItem({type: 'submenu' , label: 'Launcher', submenu: [
         }
     }),
     new MenuItem({
-        label: 'Start hidden (in tray)',
-        type: 'checkbox',
-        checked: settings.remote.read('startMinimized'),
-        click: (e)=>{
-            settings.remote.write('startMinimized', e.checked)
-        }
-    }),
-    new MenuItem({
         label: 'Always on top',
         type: 'checkbox',
         checked: settings.remote.read('alwaysOnTop'),
@@ -131,7 +123,23 @@ menu.append(new MenuItem({type: 'submenu' , label: 'Launcher', submenu: [
             settings.remote.write('alwaysOnTop', e.checked)
             remote.getCurrentWindow().setAlwaysOnTop(e.checked)
         }
-    })
+    }),
+    new MenuItem({
+        label: 'Use tray icon',
+        type: 'checkbox',
+        checked: settings.remote.read('useTray'),
+        click: (e)=>{
+            settings.remote.write('useTray', e.checked)
+        }
+    }),
+    new MenuItem({
+        label: 'Start minimized',
+        type: 'checkbox',
+        checked: settings.remote.read('startMinimized'),
+        click: (e)=>{
+            settings.remote.write('startMinimized', e.checked)
+        }
+    }),
 ]}))
 menu.append(new MenuItem({
     type: 'separator'
