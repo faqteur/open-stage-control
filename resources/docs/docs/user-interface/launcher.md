@@ -12,8 +12,10 @@
     - Clear: clear console
     - Autoscroll: enable/disable console autoscroll
     - Check for update at startup: enable/disable this feature
-- Autostart: start the server automatically when launcher is started
-- Always on top: pin the launcher window above other the windows
+- Launcher
+    - Autostart: start the server automatically when launcher is started
+    - Start hidden: starts the launcher hidden in tray
+    - Always on top: pin the launcher window above other the windows
 
 The "play/stop" icon can be used to start and stop the server without opening the menu.
 
@@ -24,6 +26,10 @@ Each server option is displayed here. When clicking on an option's label, a shor
 ## 3. Console
 
 The console displays various information, runtime errors and server debug messages.
+
+## Tray icon
+
+The launcher comes with a system tray icon that keeps the launcher alive when closed if there is at least one client window opened or if the server is running. Its context menu can be used to toggle the launcher's visibility and access some of the launcher's menu actions.
 
 ## Keyboard shortcuts
 
