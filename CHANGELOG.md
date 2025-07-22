@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.29.7
+
+- launcher
+    - add tray icon and menu (landed in 1.29.6 accidentally)
+
+
 ## 1.29.6
 
 - bug fixes
