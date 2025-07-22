@@ -177,20 +177,27 @@ function stopServerProcess() {
 
     if (settings.read('no-gui')) {
         if (serverProcess) serverProcess.kill('SIGINT')
+        serverProcess = null
         return
     }
 
-    var toClose = [...clientWindows].filter(w=>w && !w.isDestroyed()),
+    var toClose = clientWindows.filter(w=>w && !w.isDestroyed()),
         closed = 0
 
-    if (toClose.length === 0) serverProcess.kill('SIGINT')
+    if (toClose.length === 0) {
+        serverProcess.kill('SIGINT')
+        serverProcess = null
+    }
 
     for (var w of toClose) {
         w.on('closed', ()=>{
             closed++
             if (closed === toClose.length) {
                 clientWindows = []
-                if (serverProcess) serverProcess.kill('SIGINT')
+                if (serverProcess) {
+                    serverProcess.kill('SIGINT')
+                    serverProcess = null
+                }
             }
         })
         w.close()
@@ -227,14 +234,14 @@ function startLauncher() {
         })
 
         launcher.on('will-close', ()=>{
-            if (clientWindows.length) {
+            if (clientWindows.some(w=>w && !w.isDestroyed())) {
                 launcher.hide()
                 e.preventDefault()
             }
         })
 
         launcher.on('close', (e)=>{
-            if (clientWindows.length) {
+            if (clientWindows.some(w=>w && !w.isDestroyed()) && serverProcess) {
                 launcher.hide()
                 e.preventDefault()
                 return
@@ -345,13 +352,19 @@ if (settings.read('docs')) {
 
     app.on('ready', ()=>{
         process.on('SIGINT', function() {
-            if (serverProcess) serverProcess.kill('SIGINT')
+            if (serverProcess) {
+                serverProcess.kill('SIGINT')
+                serverProcess = null
+            }
             process.exit(0)
         })
     })
 
     app.on('before-quit',()=>{
-        if (serverProcess) serverProcess.kill('SIGINT')
+        if (serverProcess) {
+            serverProcess.kill('SIGINT')
+            serverProcess = null
+        }
     })
 
 

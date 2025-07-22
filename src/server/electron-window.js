@@ -61,13 +61,8 @@ module.exports = function(options={}) {
     window.setBounds(geometry)
 
     window.once('ready-to-show', ()=>{
-        window.show()
         if (options.id === 'launcher' && settings.read('startMinimized')) {
-            if (process.platform === 'darwin') {
-                window.hide()
-            } else {
-                window.minimize()
-            }
+            window.hide()
         }
     })
 

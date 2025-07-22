@@ -116,7 +116,7 @@ menu.append(new MenuItem({type: 'submenu' , label: 'Launcher', submenu: [
         }
     }),
     new MenuItem({
-        label: 'Start minimized',
+        label: 'Start hidden (in tray)',
         type: 'checkbox',
         checked: settings.remote.read('startMinimized'),
         click: (e)=>{
