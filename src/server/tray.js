@@ -55,7 +55,9 @@ module.exports = function(options = {}) {
         },
         {
             label: 'Quit',
-            role: 'Quit'
+            click: ()=>{
+                options.app.quit()
+            }
         },
     ])
 
