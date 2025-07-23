@@ -87,8 +87,23 @@ This will build the app in `dist/open-stage-control-PLATFORM-ARCH`.
     Building the app for windows from a linux system requires wine to be installed.
 
 
-## Debian/Ubuntu installer
+## Debian / Ubuntu and RPM installers
 
-```
-npm run deb64
-```
+=== "Debian / Ubuntu"
+
+    ```
+    npm run deb64
+    ```
+
+=== "RPM"
+
+    ```
+    npm run rpm
+    ```
+
+
+## Build script on Mac Silicon
+
+This user-contributed script can be used to build open stage control on recent Macs:
+
+https://github.com/rewgs/osc-as

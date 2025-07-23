@@ -25,7 +25,7 @@ iOS devices must be of version `10.3` or higher.
 
 ## Installation
 
-??? example "Linux 64bit"
+=== "Linux 64bit"
 
     **Ubuntu / Debian**
 
@@ -41,19 +41,28 @@ iOS devices must be of version `10.3` or higher.
     - Extract it in the location of your choice
     - The file inside it named `open-stage-control` is the app's main executable
 
-??? example "Mac 64bit"
+=== "Mac 64bit"
 
-    - [Download](/download) `open-stage-control-VERSION-osx.zip`
+    - [Download](/download) `open-stage-control-VERSION-osx-x64.zip`
     - Extract it in the location of your choice
     - Drag `open-stage-control.app` in your `Application` folder
 
-??? example "Windows 64bit"
+
+=== "Mac Silicon (arm)"
+
+    - [Download](/download) `open-stage-control-VERSION-osx-arm.zip`
+    - Extract it in the location of your choice
+    - Drag `open-stage-control.app` in your `Application` folder
+
+    See [https://disable-gatekeeper.github.io/](https://disable-gatekeeper.github.io/) to workaround the "damaged and can't be opened" error.
+
+=== "Windows 64bit"
 
     - [Download](/download) `open-stage-control-VERSION-win32-x64.zip`
     - Extract it in the location of your choice
     - The file inside it named `open-stage-control.exe` is the app's main executable
 
-??? example "Other systems"
+=== "Other systems"
 
     - Install [Node.js](https://nodejs.org/en/download/package-manager/)
     - Download `open-stage-control-VERSION-node.zip`
