@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.29.8
+
+- client
+    - add `title` client option
+
 ## 1.29.7
 
 - launcher

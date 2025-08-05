@@ -155,6 +155,8 @@ module.exports = {
 
     setTitle: function(data) {
 
+        if (ENV.title) return
+
         document.title = TITLE + (data ? ' (' + data + ')' : '')
 
     },

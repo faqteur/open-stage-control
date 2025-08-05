@@ -18,6 +18,7 @@ Client options can be set either with the server's `--client-options` option, or
 | altTraversing | 1 / 0 | 0 | set to 1 to enable an alternative traversing behavior for toggle buttons (traversing gestures on toggle buttons will change their values in only one way depending on the first touched button's state) |
 | virtualKeyboard | 1 / 0 | 0 | (desktop only) set to 1 to enable the virtual keyboard by default |
 | notifications | 1 / 0 | 1 | set to 0 to hide notifications by default |
+| title | string | '' | replace window title |
 
 Example:
 
