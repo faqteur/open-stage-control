@@ -114,7 +114,8 @@ class CanvasWidget extends Canvas {
         var event = {...e}
         delete event.firstTarget
 
-        event.targetName = event.target ? event.target.getAttribute('name') : ''
+        // NOTE: in firefox target.getAttribute is undefined when the cursor is outside the page
+        event.targetName = event.target && event.target.getAttribute ? event.target.getAttribute('name') : ''
         event.targetTagName = event.target ? event.target.tagName : ''
 
         var w = widgetManager.getWidgetByElement(event.target)

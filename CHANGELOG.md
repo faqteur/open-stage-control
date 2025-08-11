@@ -2,6 +2,9 @@
 
 ## 1.29.8
 
+- bug fixes
+    - firefox: `onTouch` error when the cursor goes outside the page
+
 - client
     - add `title` client option
 
