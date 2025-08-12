@@ -5,6 +5,7 @@
 - bug fixes
     - firefox: `onTouch` error when the cursor goes outside the page
     - dropdown: label not initialized until a value is set
+    - editor: regression (1.29.0) preventing color changes made with the color to be undoable unless validaed with the enter key
 
 - client
     - add `title` client option
