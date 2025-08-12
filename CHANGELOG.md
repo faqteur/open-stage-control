@@ -4,6 +4,7 @@
 
 - bug fixes
     - firefox: `onTouch` error when the cursor goes outside the page
+    - dropdown: label not initialized until a value is set
 
 - client
     - add `title` client option
