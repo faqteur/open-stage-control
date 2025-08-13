@@ -6,6 +6,8 @@
     - firefox: `onTouch` error when the cursor goes outside the page
     - dropdown: label not initialized until a value is set
     - editor: regression (1.29.0) preventing color changes made with the color to be undoable unless validaed with the enter key
+    - editor: color picker interaction issue in near #000000
+    - rgb: incoming values were not queued when during user interaction
 
 - client
     - add `title` client option
