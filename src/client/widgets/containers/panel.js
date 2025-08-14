@@ -362,8 +362,7 @@ class Panel extends Container() {
         var event = {...e},
             w
 
-        // NOTE: in firefox target.getAttribute is undefined when the cursor is outside the page
-        event.targetName = event.target && event.target.getAttribute ? event.target.getAttribute('name') : ''
+        event.targetName = event.target ? event.target.getAttribute('name') : ''
         event.targetTagName = event.target ? event.target.tagName : ''
 
         w = widgetManager.getWidgetByElement(event.target)
